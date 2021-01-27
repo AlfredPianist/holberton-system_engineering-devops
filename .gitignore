@@ -1,2 +1,5 @@
 # Exclude temporary ~ files from EMACS
 *~
+
+# Exclude temporary # files from EMACS
+*#

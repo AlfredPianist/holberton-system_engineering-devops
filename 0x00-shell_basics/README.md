@@ -21,3 +21,4 @@ This directory contains the answers of the shell basics project.
  - 16-clean_emacs: removes all files in the current working directory ending with ~.
  - 17-tree: creates the directories welcome/, welcome/to/ and welcome/to/holberton in the current directory.
  - 18-commas: lists all files including hidden ones with trailing commas and directories with trailing forward slashes.
+ - holberton.mgc: magic file that reads the "holberton" file type. The non-compiled file is also included.
