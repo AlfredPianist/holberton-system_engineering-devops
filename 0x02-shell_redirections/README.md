@@ -26,6 +26,6 @@ This directory contains the answers to the 0x02. Shell, I/O Redirections and fil
  - 21-reverse: reverses its input.
  - 22-users_and_homes: prints all users and their home directories, sorted by users.
  - 100-empty_casks: prints all files and directories, empty or otherwise from the current directory and its subdirectories, displaying only the name without its path.
- - 101-gifs: in progress...
+ - 101-gifs: lists .gif files without its extension and sorted by byte values. Dotfiles go first.
  - 102-acrostic: decodes an acrostic.
- - 103-the_biggest_fan: in progress...
+ - 103-the_biggest_fan: prints the first 11 hosts or IP addresses which did the most requests to a web server log saved in TSV format.
