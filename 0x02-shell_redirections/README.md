@@ -26,3 +26,6 @@ This directory contains the answers to the 0x02. Shell, I/O Redirections and fil
  - 21-reverse: reverses its input.
  - 22-users_and_homes: prints all users and their home directories, sorted by users.
  - 100-empty_casks: prints all files and directories, empty or otherwise from the current directory and its subdirectories, displaying only the name without its path.
+ - 101-gifs: in progress...
+ - 102-acrostic: decodes an acrostic.
+ - 103-the_biggest_fan: in progress...
