@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script prints the filenames without their numbering.
+
+for file in *;
+do
+    echo "$file" | cut -d "-" -f 2-
+done

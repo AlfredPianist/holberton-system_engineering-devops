@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# This script loops 20 times and displays the number with
+#     * "bad luck from China" for the 4th loop iteration,
+#     * "bad luck from Japan" for the 9th loop iteration,
+#     * and "bad luck from Italy" for the 17th loop iteration.
+
+i=1
+
+while ((i <= 20))
+do
+    case $i in
+	4)
+	    echo -e "$i\nbad luck from China" ;;
+	9)
+	    echo -e "$i\nbad luck from Japan" ;;
+	17)
+	    echo -e "$i\nbad luck from Italy" ;;
+	*)
+	    echo $i ;;
+    esac
+    ((i++))
+done

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# This script implements "fizzbuzz" as a bash script.
+#     * Displays "FizzBuzz" when i is divisible by 15.
+#     * Displays "Fizz" when i is divisible by 3.
+#     * Displays "Buzz" when i is divisible by 5.
+#     * Displays the number otherwise.
+
+for i in {1..100}
+do
+    if ((i % 15 == 0))
+    then
+	echo "FizzBuzz"
+    elif ((i % 3 == 0))
+    then
+	echo "Fizz"
+    elif ((i % 5 == 0))
+    then
+	echo "Buzz"
+    else
+	echo $i
+    fi
+done

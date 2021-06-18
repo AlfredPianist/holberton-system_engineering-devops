@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script uses the awk command to parse the IP and HTTP_CODE of a log file.
+#   Then it is sorted by number of occurrences from most to least.
+
+awk '{print $1 " " $9}' "./apache-access.log" | sort | uniq -c | sort -rn
