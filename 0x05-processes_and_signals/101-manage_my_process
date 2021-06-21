@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# This script:
+#   - On start:
+#     - Starts the process ./manage_my_process on the background.
+#     - Creates the file /var/run/myprocess.pid with the current PID.
+#     - Prints the message "manage_my_process started"
+#   - On stop:
+#     - Kills the process ./manage_my_process
+#     - Removes the file /var/run/myprocess.pid
+#     - Prints the message "manage_my_process stopped"
+#   - On restart:
+#     - Kills the process ./manage_my_process
+#     - Removes the file /var/run/myprocess.pid
+#     - Starts the process ./manage_my_process on the background.
+#     - Creates the file /var/run/myprocess.pid with the current PID.
+#     - Prints the message "manage_my_process restarted"
+
+
+pid_file="/var/run/my_process.pid"
+
+function start()
+{
+    ./manage_my_process &
+    echo $$ > $pid_file
+}
+
+function stop()
+{
+    pkill --signal SIGKILL -f ./manage_my_process
+    rm $pid_file
+}
+
+case $1 in
+    start)
+	start
+	echo "manage_my_process started"
+	;;
+    stop)
+	stop
+	echo "manage_my_process stopped"
+	;;
+    restart)
+	stop
+	start
+	echo "manage_my_process restarted"
+	;;
+    *)
+	echo "Usage: manage_my_process {start|stop|restart}" ;;
+esac
