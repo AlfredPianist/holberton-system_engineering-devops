@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script shows the current running bash process tree.
+
+pgrep -l bash

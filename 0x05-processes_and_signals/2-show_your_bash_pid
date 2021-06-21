@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script shows the current running bash process tree.
+# shellcheck disable=SC2009
+
+ps -aux --forest | grep "bash"

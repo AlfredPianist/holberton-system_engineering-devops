@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script shows the current process ID.
+
+pidof -s bash
