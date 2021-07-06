@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Script that prints all active IPv4 IPs active on the current machine.
+ifconfig | grep -Po '(?<=addr:)(\d+.\d+.\d+.\d+)'
