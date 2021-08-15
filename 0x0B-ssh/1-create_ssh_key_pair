@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
+# Script that creates a public-private key pair with passphrase holberton
+#   and name betty with 4096 bytes
 ssh-keygen -f ./holberton -b 4096 -N betty

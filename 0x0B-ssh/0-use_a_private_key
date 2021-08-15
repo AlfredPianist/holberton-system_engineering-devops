@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
+# Script that connects to the server 34.75.153.110 with user ubuntu
+#   and key holbeton
 ssh -i ~/.ssh/holberton ubuntu@34.75.153.110
