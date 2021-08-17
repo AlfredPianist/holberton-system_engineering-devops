@@ -1,7 +1,7 @@
 # Script that installs and configures nginx on a server
 
 # Install nginx
-package { 'nginx':
+package { 'nginx-installation':
   ensure  => 'installed',
   name    => 'nginx',
   require => Exec['apt-upgrade']
@@ -18,12 +18,12 @@ file_line { 'sites-available/default':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
   after  => 'server_name_;',
-  line   => '\\trewrite ^/redirect_me https://example.com/ permanent;'
+  line   => 'rewrite ^/redirect_me https://example.com/ permanent;'
 }
 
 # Run service nginx
 service { 'nginx':
   ensure  => 'running',
   name    => 'nginx',
-  require => Package['nginx']
+  require => Package['nginx-installation']
 }
