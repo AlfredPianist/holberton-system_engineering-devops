@@ -13,16 +13,15 @@ file { 'index.html':
 }
 
 # Add permament redirection
-file_line { 'sites-available/default':
+file_line { 'redirection-301':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
-  after  => 'server_name_;',
+  after  => 'server_name _;',
   line   => 'rewrite ^/redirect_me https://example.com/ permanent;'
 }
 
 # Run service nginx
 service { 'nginx':
   ensure  => 'running',
-  name    => 'nginx',
   require => Package['nginx-installation']
 }
