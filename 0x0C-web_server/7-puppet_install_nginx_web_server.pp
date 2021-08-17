@@ -1,18 +1,5 @@
 # Script that installs and configures nginx on a server
 
-# Apt-get update
-exec { 'apt-update':
-  command => 'apt-get update',
-  path    => ['/usr/bin', '/bin', '/usr/sbin']
-}
-
-# Apt-get upgrade
-exec { 'apt-upgrade':
-  command => 'apt-get upgrade -y',
-  path    => ['/usr/bin', '/bin', '/usr/sbin'],
-  require => Exec['apt-update']
-}
-
 # Install nginx
 package { 'nginx':
   ensure  => 'installed',
