@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Script that installs NGINX on my web-01 server. Also, redirects anything
+#   that doesn't exist on the server to 404.html
+
+# Update server and install nginx
+sudo apt update && sudo apt install nginx -y
+
+# Enable firewall's port 80 for nginx
+sudo ufw allow 'Nginx HTTP'
+
+# If there are permission issues
+sudo chown -R ubuntu /var/www/
+
+# Page with string "Holberton School"
+echo 'Holberton School for the win!' > /var/www/html/index.html
+
+# 404 page
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# Redirection of directory redirect_me to another page
+sudo sed -i "/server_name _;/a \\\n\\trewrite ^/redirect_me https://example.com/ permanent;"\
+     /etc/nginx/sites-available/default
+
+# Redirection to 404
+sudo sed -i "/rewrite*/a \\\n\\terror_page 404 /404.html;\\n\\n\\tlocation = /404.html {\\n\\t\\tinternal;\\n\\t}"\
+     /etc/nginx/sites-available/default
+
+# Start the Nginx service
+sudo service nginx start

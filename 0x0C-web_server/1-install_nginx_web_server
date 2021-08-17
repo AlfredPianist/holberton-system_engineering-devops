@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Script that installs NGINX on my web-01 server.
+
+# Update server and install nginx
+sudo apt update && sudo apt install nginx -y
+
+# Enable firewall's port 80 for nginx
+sudo ufw allow 'Nginx HTTP'
+
+# If there are permission issues
+sudo chown -R ubuntu /var/www/
+
+# Page with string "Holberton School"
+echo 'Holberton School for the win!' > /var/www/html/index.html
+
+# Start the Nginx service
+sudo service nginx start
