@@ -1,14 +1,12 @@
 # Script that installs and configures nginx on a server
 
 # Install nginx
-package { 'nginx-installation':
-  ensure => 'installed',
-  name   => 'nginx'
+package { 'nginx':
+  ensure => 'installed'
 }
 
 # Create index file with content "Holberton School for the win!"
-file { 'index.html':
-  path    => '/var/www/html/index.html',
+file { '/var/www/html/index.html':
   content => 'Holberton School for the win!'
 }
 
@@ -23,5 +21,5 @@ file_line { 'redirection-301':
 # Run service nginx
 service { 'nginx':
   ensure  => 'running',
-  require => Package['nginx-installation']
+  require => Package['nginx']
 }
