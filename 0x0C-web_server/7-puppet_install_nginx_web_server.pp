@@ -2,9 +2,8 @@
 
 # Install nginx
 package { 'nginx-installation':
-  ensure  => 'installed',
-  name    => 'nginx',
-  require => Exec['apt-upgrade']
+  ensure => 'installed',
+  name   => 'nginx'
 }
 
 # Create index file with content "Holberton School for the win!"
