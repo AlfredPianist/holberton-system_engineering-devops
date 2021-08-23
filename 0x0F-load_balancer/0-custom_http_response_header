@@ -19,7 +19,7 @@ echo 'Holberton School for the win!' > /var/www/html/index.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
 # Add new header to server
-sudo sed -i "/server_name _;/a \\\n\\tadd_header X-Served-By $HOSTNAME"\
+sudo sed -i "/server_name _;/a \\\n\\tadd_header X-Served-By $HOSTNAME;"\
      /etc/nginx/sites-available/default
 
 # Redirection of directory redirect_me to another page
@@ -31,4 +31,4 @@ sudo sed -i "/rewrite*/a \\\n\\terror_page 404 /404.html;\\n\\n\\tlocation = /40
      /etc/nginx/sites-available/default
 
 # Start the Nginx service
-sudo service nginx start
+sudo service nginx restart
