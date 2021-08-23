@@ -13,7 +13,7 @@ printf "frontend http_front
 backend http_back
         balance roundrobin
         server host_1 34.75.153.110
-        server host_2 18.208.193.84" >> /etc/haproxy/haproxy.cfg
-
+        server host_2 18.208.193.84
+" | sudo dd of=/etc/haproxy/haproxy.cfg oflag=append conv=notrunc
 # Restart service
 sudo service haproxy restart
