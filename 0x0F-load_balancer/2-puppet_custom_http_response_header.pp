@@ -1,14 +1,8 @@
 # Script that installs and configures nginx on a server
 
-# Update
-exec { 'update':
-  command => '/usr/bin/apt-get update -y'
-}
-
 # Install nginx
 package { 'nginx':
   ensure  => 'installed',
-  require => Exec['update']
 }
 
 # Create index file with content "Holberton School for the win!"
