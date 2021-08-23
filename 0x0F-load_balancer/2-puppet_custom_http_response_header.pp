@@ -16,7 +16,7 @@ file_line { 'custom-header':
   ensure  => 'present',
   path    => '/etc/nginx/sites-available/default',
   after   => 'server_name _;',
-  line    => '\\tadd-header X-Served-By "$HOSTNAME";',
+  line    => 'add-header X-Served-By "$HOSTNAME";',
   require => Package['nginx']
 }
 
@@ -24,8 +24,8 @@ file_line { 'custom-header':
 file_line { 'redirection-301':
   ensure  => 'present',
   path    => '/etc/nginx/sites-available/default',
-  after   => '\\tadd-header X-Served-By "$HOSTNAME";',
-  line    => '\\trewrite ^/redirect_me https://example.com/ permanent;',
+  after   => 'add-header X-Served-By "$HOSTNAME";',
+  line    => 'rewrite ^/redirect_me https://example.com/ permanent;',
   require => Package['nginx']
 }
 
