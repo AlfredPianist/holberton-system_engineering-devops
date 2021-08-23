@@ -1,16 +1,21 @@
 # Script that installs and configures nginx on a server
 
-# Install nginx
-exec { 'nginx':
-  command  => 'sudo apt update &&
-	      sudo apt install nginx -y',
+# Update server
+exec { 'update':
+  command  => 'sudo apt update -y',
   provider => shell
+}
+
+# Install nginx
+package { 'nginx':
+  ensure  => 'installed',
+  require => Exec['update']
 }
 
 # Create index file with content "Holberton School for the win!"
 file { '/var/www/html/index.html':
   content => 'Holberton School for the win!',
-  require => Exec['nginx']
+  require => Package['nginx']
 }
 
 # Add custom header and permanent redirection
@@ -22,7 +27,7 @@ exec { 'modify-default':
 	       sudo sed -i "/rewrite*/a \\\n\\terror_page 404 /404.html;\\n\\n\\tlocation = /404.html {\\n\\t\\tinternal;\\n\\t}"\
      		/etc/nginx/sites-available/default;',
   provider => shell,
-  require  => Exec['nginx']
+  require  => Package['nginx']
 }
 
 # Run service nginx
