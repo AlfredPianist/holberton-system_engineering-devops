@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Script that removes the file in sites-enabled and links the one
+#   from sites-available (which has port 80 listening).
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx start

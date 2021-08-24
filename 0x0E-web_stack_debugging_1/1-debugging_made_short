@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script that replaces ports on default and hangs up the nginx process
+sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+sudo pkill --signal SIGHUP nginx
