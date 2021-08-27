@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Script that prints the record type and IP of a subdomain
+
+print_records() {
+    dig "$2.$1" | grep -A1 'ANSWER SECTION' |\
+	awk -v subdomain="$2" 'FNR == 2 {print "The subdomain " subdomain " is a " $4 " record and points to " $5}'
+}
+
+subdomains=("www" "lb-01" "web-01" "web-02")
+
+if [ "$1" -a ! "$2" ]
+then
+    for subdomain in "${subdomains[@]}"
+    do
+	print_records "$1" "$subdomain"
+    done
+elif [ "$1" -a "$2" ]
+then
+    print_records "$1" "$2"
+fi
