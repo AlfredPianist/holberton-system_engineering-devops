@@ -1,0 +1,32 @@
+html {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background-color: #00273D;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    position: inherit;
+    height: inherit;
+}
+
+h1 {
+    color: #FFFFFF;
+    font-family: 'Syne Mono', monospace;
+    font-size: 64px;
+}
+
+p {
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
+
+a {
+    color: #0095EB;
+}
