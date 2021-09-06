@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Script that changes ownership of nginx conf to nginx user and makes it
+#   listen to port 8080.
+
+# Change ownership of the nginx directory to the nginx user.
+sudo chown -R nginx:nginx /etc/nginx/
+
+# Change permissions of nginx.conf file.
+sudo chmod 644 /etc/nginx/nginx.conf
+
+# Change listening ports of default config.
+sed -i 's/80/8080/' /etc/nginx/sites-available/default
+
+# Kill Apache.
+sudo pkill apache2
+
+# Start nginx.
+sudo -u nginx service nginx start
