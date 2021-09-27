@@ -27,8 +27,7 @@ def count_words(subreddit, word_list):
     for title in titles:
         title_words = title.lower().split(' ')
         for word in word_list:
-            if word in title_words:
-                freq_dict[word] += 1
+            freq_dict[word] += title_words.count(word)
     freq_dict = {key: value for key, value in freq_dict.items()
                  if freq_dict[key] != 0}
 
