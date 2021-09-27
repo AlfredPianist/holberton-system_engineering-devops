@@ -40,7 +40,7 @@ def count_words(subreddit, word_list, payload={}, hot_list=[]):
         for word in word_list:
             freq_dict[word] += title_words.count(word)
 
-    for key in sorted(freq_dict):
-        if (freq_dict[key] != 0):
-            print("{}: {}".format(key, freq_dict[key]))
-    return hot_list
+    freq_list = [(key, val) for key, val in freq_dict.items()]
+    for entry in sorted(freq_list, key=lambda x: (-x[1], x[0])):
+        if (entry[1] != 0):
+            print("{}: {}".format(entry[0], entry[1]))
