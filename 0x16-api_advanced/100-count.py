@@ -20,33 +20,34 @@ def count_words(subreddit, word_list):
         return
 
     payload = {'limit': 100}
-    titles = recurse(session, url, payload, [])
 
     word_list = [word.lower() for word in word_list]
     freq_dict = {word: 0 for word in word_list}
-    for title in titles:
-        title_words = title.lower().split(' ')
-        for word in word_list:
-            freq_dict[word] += title_words.count(word)
-    freq_dict = {key: value for key, value in freq_dict.items()
-                 if freq_dict[key] != 0}
 
-    for key in sorted(freq_dict):
-        print("{}: {}".format(key, freq_dict[key]))
+    return recurse(session, url, payload, word_list, freq_dict)
 
 
-def recurse(session, url, payload, hot_list):
+def recurse(session, url, payload, word_list, freq_dict):
     """Stores the titles of all hot topics in the actual subreddit"""
     request = session.get(url, params=payload, allow_redirects=False)
     request_data = request.json().get('data')
 
     post_page = request_data.get('children')
-    hot_list.extend([post.get('data').get('title') for post in post_page])
+    titles = [post.get('data').get('title') for post in post_page]
+
+    for title in titles:
+        title_words = title.lower().split(' ')
+        for word in word_list:
+            freq_dict[word] += title_words.count(word)
 
     if (request_data.get('after') is None):
-        return hot_list
+        for key in sorted(freq_dict):
+            if freq_dict[key] != 0:
+                print("{}: {}".format(key, freq_dict[key]))
+        return
+
     payload = {
         'after': request_data.get('after'),
         'limit': 100
     }
-    return recurse(session, url, payload, hot_list)
+    return recurse(session, url, payload, word_list, freq_dict)
