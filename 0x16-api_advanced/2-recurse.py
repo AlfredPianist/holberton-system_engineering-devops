@@ -18,20 +18,23 @@ def recurse(subreddit, hot_list=[]):
     if (request.status_code == 404):
         return None
 
-    return recurse_helper(session, url, {}, hot_list)
+    payload = {'limit': 100}
+    return recurse_helper(session, url, payload, hot_list)
 
 
 def recurse_helper(session, url, payload, hot_list):
     """Actual recursive function that stores the titles of all
     hot topics in the actual subreddit"""
-    request = session.get(url, params=payload)
+    request = session.get(url, params=payload, allow_redirects=False)
     request_data = request.json().get('data')
 
     post_page = request_data.get('children')
-    for post in post_page:
-        hot_list.append(post.get('data').get('title'))
+    hot_list.extend([post.get('data').get('title') for post in post_page])
 
     if (request_data.get('after') is None):
         return hot_list
-    payload = {'after': request_data.get('after')}
+    payload = {
+        'after': request_data.get('after'),
+        'limit': 100
+    }
     return recurse_helper(session, url, payload, hot_list)
