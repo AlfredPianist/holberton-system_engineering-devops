@@ -3,12 +3,13 @@
 0-subs: Gets the number of subscribers from a given subreddit.
 """
 import requests
-import user_agent
 
 
 def number_of_subscribers(subreddit):
     """Gets the number of subscribers from a given subreddit"""
-    user_ag = {'User-Agent': user_agent.generate_user_agent()}
+    user_agent_str = ('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:77.0)'
+                      'Gecko/20190101 Firefox/77.0')
+    user_ag = {'User-Agent': user_agent_str}
     session = requests.Session()
     session.headers.update(user_ag)
 
