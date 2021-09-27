@@ -2,9 +2,7 @@
 """
 2-recurse: Gets the top ten hot posts from a given subreddit.
 """
-import json
 import requests
-import user_agent
 
 
 def recurse(subreddit, hot_list=[]):
