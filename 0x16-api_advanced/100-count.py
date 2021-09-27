@@ -43,3 +43,4 @@ def count_words(subreddit, word_list, payload={}, hot_list=[]):
     for key in sorted(freq_dict):
         if (freq_dict[key] != 0):
             print("{}: {}".format(key, freq_dict[key]))
+    return hot_list
