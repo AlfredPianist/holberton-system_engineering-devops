@@ -1,2 +1,0 @@
-# Script that hangs up the gunicorn workers
-pkill -HUP gunicorn
